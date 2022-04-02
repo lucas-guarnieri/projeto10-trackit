@@ -41,11 +41,19 @@ const Container = styled.div`
         height: 45px;
         margin: 5px 0 25px 0;
         background: #52B6FF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border: none;
         border-radius: 5px;
         font-size: 21px;
         color: #FFFFFF;
     }
+
+    .button-disable {
+        opacity: 0.7;
+    }
+    
     .link {
         font-family: 'Lexend Deca';
         font-size: 14px;
