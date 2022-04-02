@@ -35,12 +35,10 @@ export default function Login(){
             
             promise.catch(() => {
                 alert("Login Error");
-                //fazer função liberar botao
                 setDisable("");
             })
         }
- 
-    
+
     return(
         <Container>
             <img src={logo} alt="logo" />

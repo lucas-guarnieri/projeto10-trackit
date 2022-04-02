@@ -1,3 +1,11 @@
+import Top from "./Top"
+import Menu from "./Menu";
+
 export default function Habits(){
-    return(<></>);
+    return(
+        <>
+            <Top />
+            <Menu />
+        </>
+    );
 }
