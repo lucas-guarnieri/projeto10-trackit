@@ -2,12 +2,10 @@ import { useContext, React } from "react";
 import styled from 'styled-components';
 import UserContext from '../contexts/UserContext';
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
 
 export default function Menu(){
-    const navigate = useNavigate();
     const { user } = useContext(UserContext);
 
     return(
