@@ -63,6 +63,4 @@ const BottonBar = styled.div`
         height: 91px;
         margin-bottom: 40px;
     }
-    
-  
 `;

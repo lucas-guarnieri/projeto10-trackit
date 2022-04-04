@@ -1,4 +1,4 @@
-import { React, useState, useEffect, useContext } from "react";
+import { React, useState, useContext } from "react";
 import axios from "axios";
 import styled from 'styled-components';
 
@@ -16,7 +16,6 @@ export default function TodayHabit(props){
     }
     
     const id = habit.id
-//id, name, done, currentSequence, highestSequence
 
     function toggleHabit(){
         if (done){

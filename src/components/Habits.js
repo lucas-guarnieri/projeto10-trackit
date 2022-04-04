@@ -101,8 +101,6 @@ export default function Habits(){
         }
     }
 
-        
-
     function cleanSlate(){
         setHabitName("");
         setSun(false);
@@ -193,9 +191,6 @@ export default function Habits(){
                          (<button className="botton-button right"  disabled = {disable}><ThreeDots color="#FFFFFF" heigth="60" width="60" /></button>)}
                     </div>
                 </AddHabitBox>
-
-                {/* ADD VERIFICATION FOR EMPTY LIST */}
-
                 <div className="habit-list">
                     {habitList.length !== 0 ? (habitList.map(e => <GeralHabit key={e.id} habit={e} aux={aux} setAux={setAux}/>)) : (<p className="empty-list">Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>) }
                 </div> 
