@@ -9,8 +9,6 @@ export default function TodayHabit(props){
     const { user } = useContext(UserContext);
 
     const [done, setDone] = useState(habit.done);
-    const [currentSeq, setCurrentSeq] = useState(habit.currentSequence);
-    const [recordtSeq, setrecordtSeq] = useState(habit.highestSequence);
     const config = {
         headers: {
             "Authorization": `Bearer ${user.token}`

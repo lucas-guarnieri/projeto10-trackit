@@ -9,6 +9,7 @@ import Menu from "./Menu";
 import TodayHabit from "./TodayHabit";
 
 import UserContext from '../contexts/UserContext';
+import PercentageContext from "../contexts/PercentageContext";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 
@@ -17,9 +18,12 @@ dayjs.extend(localizedFormat);
 
 export default function Today(){
     const [habitList, setHabitList] = useState([]);
+    const [dividend, setDividend] = useState(0);
+    const [divisor, setDivisor] = useState(0);
     const [aux, setAux] = useState(true);
 
-    const { user, setUser } = useContext(UserContext);
+    const { user } = useContext(UserContext);
+    const { percentage, setPercentage } = useContext(PercentageContext);
 
     const config = {
         headers: {
@@ -32,11 +36,19 @@ export default function Today(){
 
         promise.then(response => {
             setHabitList(response.data);
+            setDivisor(response.data.length);
+            setDividend(response.data.filter(isDone).length);
+            setPercentage((response.data.filter(isDone).length/response.data.length).toFixed(2));
+
             console.log(response.data);
         });
         promise.catch(error => console.log(error.response));
 
     }, [aux]);
+
+    function isDone(obj){
+        return obj.done;
+    }
     
     return(
         <>
@@ -45,9 +57,10 @@ export default function Today(){
                 <h2>{dayjs().locale("pt").format("ddd, DD/MM").charAt(0).toUpperCase()+
                     dayjs().locale("pt").format("ddd, DD/MM").slice(1)}
                 </h2>
-
-                {/* ADD VERIFICATION FOR EMPTY LIST */}
-
+                {percentage == 0 ? 
+                    (<p className="nothing-done">Nenhum hábito concluído ainda</p>) : 
+                    (<p className="something-done">{percentage*100}% dos hábitos concluídos</p>)
+                }
                 <div className="habit-list">
                     {habitList.map(e => <TodayHabit key={e.id} habit={e} aux={aux} setAux={setAux} />)}
                 </div>
@@ -65,6 +78,17 @@ const Container = styled.div`
         font-size: 24px;
         line-height: 29px;
         color: #126BA5;
+    }
+    .nothing-done { 
+        font-size: 18px;
+        line-height: 22px;
+        color: #BABABA;
+    }
+
+    .something-done {
+        font-size: 18px;
+        line-height: 22px;
+        color: #8FC549;
     }
 
     .habit-list {
