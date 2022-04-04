@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import UserContext from '../contexts/UserContext';
 
 export default function TodayHabit(props){
-    const { habit } = props;
+    const { habit, aux, setAux } = props;
     const { user } = useContext(UserContext);
 
     const [done, setDone] = useState(habit.done);
@@ -26,6 +26,7 @@ export default function TodayHabit(props){
             promise.then(res=>{
                 console.log(res.data);
                 setDone(false);
+                setAux(!aux);
             });
             promise.catch(error=>console.log(error.data));
         }else{
@@ -33,6 +34,7 @@ export default function TodayHabit(props){
             promise.then(res=>{
                 console.log(res.data);
                 setDone(true);
+                setAux(!aux);
             });
             promise.catch(error=>console.log(error.data));
         }
@@ -41,12 +43,12 @@ export default function TodayHabit(props){
     return(
         <Habit colorDone = {done ? ("#8FC549") : ("#E7E7E7")} 
             colorSeq = {done ? ("#8FC549") : ("#666666")}
-            colorRec = {recordtSeq > 0 ? (currentSeq >= recordtSeq ? ("#8FC549") : ("#666666")) : ("#666666")}
+            colorRec = {habit.highestSequence > 0 ? (habit.currentSequence >= habit.highestSequence ? ("#8FC549") : ("#666666")) : ("#666666")}
         >
             <div className="habit-infos">
                 <h1>{habit.name}</h1>
-                <p>Sequência atual: <b className="actual-seq">{currentSeq}</b></p>
-                <p>Recorde: <b className="record-seq">{recordtSeq}</b></p>
+                <p>Sequência atual: <b className="actual-seq">{habit.currentSequence}</b></p>
+                <p>Recorde: <b className="record-seq">{habit.highestSequence}</b></p>
             </div>
             <ion-icon onClick={toggleHabit} name="checkbox"></ion-icon>
         </Habit>

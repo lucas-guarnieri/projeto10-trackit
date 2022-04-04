@@ -17,6 +17,7 @@ dayjs.extend(localizedFormat);
 
 export default function Today(){
     const [habitList, setHabitList] = useState([]);
+    const [aux, setAux] = useState(true);
 
     const { user, setUser } = useContext(UserContext);
 
@@ -35,7 +36,7 @@ export default function Today(){
         });
         promise.catch(error => console.log(error.response));
 
-    }, []);
+    }, [aux]);
     
     return(
         <>
@@ -48,7 +49,7 @@ export default function Today(){
                 {/* ADD VERIFICATION FOR EMPTY LIST */}
 
                 <div className="habit-list">
-                    {habitList.map(e => <TodayHabit key={e.id} habit={e} />)}
+                    {habitList.map(e => <TodayHabit key={e.id} habit={e} aux={aux} setAux={setAux} />)}
                 </div>
             </Container>
             <Menu />
