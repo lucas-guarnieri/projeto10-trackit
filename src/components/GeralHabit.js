@@ -14,9 +14,21 @@ export default function GeralHabit(props){
             "Authorization": `Bearer ${user.token}`
         }
     }
+
+    function deleteHabit(id){
+        let text = "Tem certeza que gostaria de deletar esse hábito?";
+        if (window.confirm(text) === true){
+            const promise = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config);
+            promise.then(response => console.log(response.data));
+            promise.catch(error => console.log(error.response));
+        }
+    }
     return(
         <Habit>
-            <p>{habit.name}</p>
+            <div className="top">
+                <p>{habit.name}</p>
+                <ion-icon name="trash-outline" onClick={() => deleteHabit(habit.id)}></ion-icon>
+            </div>
             <div className="week-days">
                 {habit.days.includes(0) ? (<div className="week-day marked">D</div>) : (<div className="week-day">D</div>)}
                 {habit.days.includes(1) ? (<div className="week-day marked">S</div>) : (<div className="week-day">S</div>)}
@@ -43,6 +55,11 @@ const Habit = styled.div`
     background: #FFFFFF;
     border-radius: 5px;
 
+    .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
     .week-days {
         display: flex;
         align-items: center;
@@ -69,4 +86,8 @@ const Habit = styled.div`
     border: 1px solid #CFCFCF;
     color: #FFFFFF;
    }
+
+   
+
+   
 `

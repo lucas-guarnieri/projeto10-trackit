@@ -190,6 +190,9 @@ export default function Habits(){
                          (<button className="botton-button right"  disabled = {disable}><ThreeDots color="#FFFFFF" heigth="60" width="60" /></button>)}
                     </div>
                 </AddHabitBox>
+
+                {/* ADD VERIFICATION FOR EMPTY LIST */}
+
                 <div className="habit-list">
                     {habitList.map(e => <GeralHabit key={e.id} habit={e} />)}
                 </div> 

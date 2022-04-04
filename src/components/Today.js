@@ -44,6 +44,9 @@ export default function Today(){
                 <h2>{dayjs().locale("pt").format("ddd, DD/MM").charAt(0).toUpperCase()+
                     dayjs().locale("pt").format("ddd, DD/MM").slice(1)}
                 </h2>
+
+                {/* ADD VERIFICATION FOR EMPTY LIST */}
+
                 <div className="habit-list">
                     {habitList.map(e => <TodayHabit key={e.id} habit={e} />)}
                 </div>
