@@ -57,7 +57,9 @@ export default function Today(){
                 <h2>{dayjs().locale("pt").format("ddd, DD/MM").charAt(0).toUpperCase()+
                     dayjs().locale("pt").format("ddd, DD/MM").slice(1)}
                 </h2>
-                {percentage == 0 ? 
+
+
+                {habitList.length == 0 ? 
                     (<p className="nothing-done">Nenhum hábito concluído ainda</p>) : 
                     (<p className="something-done">{percentage*100}% dos hábitos concluídos</p>)
                 }

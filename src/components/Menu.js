@@ -18,7 +18,7 @@ export default function Menu(){
             <Link to="/hoje">
             <CircularProgressbar
                 className="progress-bar" 
-                value={percentage*100} 
+                value= {percentage*100}
                 text="Hoje"
                 background
                 backgroundPadding={6}

@@ -79,6 +79,10 @@ export default function Habits(){
         if (daysOfWeek.length === 0){
             alert("Escolha pelo menos um dia da semana");
             setDisable("");
+        }
+        if (habitName.length <= 2){
+            alert("Nome deve ter mais de 2 letras!");
+            setDisable("");
         }else{
             const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits",
             {
