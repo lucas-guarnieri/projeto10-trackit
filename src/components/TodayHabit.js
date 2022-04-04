@@ -22,7 +22,6 @@ export default function TodayHabit(props){
 
     function toggleHabit(){
         if (done){
-            console.log("desmarcando");
             const promise = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/uncheck`,"", config);
             promise.then(res=>{
                 console.log(res.data);
@@ -30,7 +29,6 @@ export default function TodayHabit(props){
             });
             promise.catch(error=>console.log(error.data));
         }else{
-            console.log("marcando");
             const promise = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/check`,"", config);
             promise.then(res=>{
                 console.log(res.data);
@@ -38,8 +36,6 @@ export default function TodayHabit(props){
             });
             promise.catch(error=>console.log(error.data));
         }
-        setCurrentSeq(habit.currentSequence);
-        setrecordtSeq(habit.highestSequence);
     }
     
     return(
@@ -59,9 +55,11 @@ export default function TodayHabit(props){
 
 const Habit = styled.div`
     width: 340px;
-    height: 94px;
+    height: auto;
+    padding: 13px 13px 12px 15px;
+    margin-bottom: 10px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background: #FFFFFF;
     border-radius: 5px;

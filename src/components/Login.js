@@ -58,7 +58,7 @@ export default function Login(){
                 />
                 {disable === "" ? 
                     (<button type="submit">Login</button>) : 
-                    (<button type="submit" className="button-disable"><ThreeDots color="#FFFFFF" heigth="60" width="60" /></button>)
+                    (<button type="submit" className="button-disable" disabled = {disable}><ThreeDots color="#FFFFFF" heigth="60" width="60" /></button>)
                 }
 		        
             </form>

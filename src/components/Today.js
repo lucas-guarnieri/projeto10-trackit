@@ -26,7 +26,6 @@ export default function Today(){
         }
     }
     
-
     useEffect(() => {
         const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", config);
 
@@ -46,7 +45,7 @@ export default function Today(){
                     dayjs().locale("pt").format("ddd, DD/MM").slice(1)}
                 </h2>
                 <div className="habit-list">
-                    {habitList.map(e => <TodayHabit key={e.id} habit={e}/>)}
+                    {habitList.map(e => <TodayHabit key={e.id} habit={e} />)}
                 </div>
             </Container>
             <Menu />
