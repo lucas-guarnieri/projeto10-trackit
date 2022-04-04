@@ -23,6 +23,7 @@ export default function Habits(){
     const [sat, setSat] = useState(false);
     const [display, setDisplay] = useState("none");
     const [disable, setDisable] = useState("");
+    const [aux, setAux] = useState(true);
 
     const { user, setUser } = useContext(UserContext);
     
@@ -41,7 +42,7 @@ export default function Habits(){
         });
         promise.catch(error => console.log(error.response));
 
-    }, []);
+    }, [aux]);
 
     function changeDisplay(){
         if (display === "block"){
@@ -76,7 +77,8 @@ export default function Habits(){
             daysOfWeek.push(6);
         }
         if (daysOfWeek.length === 0){
-            alert("Escolha pelo menos um dia da semana")
+            alert("Escolha pelo menos um dia da semana");
+            setDisable("");
         }else{
             const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits",
             {
@@ -89,6 +91,7 @@ export default function Habits(){
                 setDisable("");
                 cleanSlate();
                 changeDisplay();
+                setAux(!aux);
             });
             promise.catch(error=>{
                 promise.catch(error=>console.log(error.data));
@@ -194,7 +197,7 @@ export default function Habits(){
                 {/* ADD VERIFICATION FOR EMPTY LIST */}
 
                 <div className="habit-list">
-                    {habitList.map(e => <GeralHabit key={e.id} habit={e} />)}
+                    {habitList.length !== 0 ? (habitList.map(e => <GeralHabit key={e.id} habit={e} aux={aux} setAux={setAux}/>)) : (<p className="empty-list">Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>) }
                 </div> 
             </Container>
             <Menu />
@@ -240,6 +243,13 @@ const Container = styled.div`
 
     .habit-list {
         margin-top: 28px;
+    }
+
+    .empty-list {
+        margin-top: 28px;
+        font-size: 17.976px;
+        line-height: 22px;
+        color: #666666;
     }
 `
 const AddHabitBox = styled.div`

@@ -6,7 +6,7 @@ import UserContext from '../contexts/UserContext';
 import Container from "../styles/ContainerForm";
 
 export default function GeralHabit(props){
-    const { habit } = props;
+    const { habit, aux, setAux } = props;
     const { user } = useContext(UserContext);
 
     const config = {
@@ -21,6 +21,7 @@ export default function GeralHabit(props){
             const promise = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config);
             promise.then(response => console.log(response.data));
             promise.catch(error => console.log(error.response));
+            setAux(!aux);
         }
     }
     return(
