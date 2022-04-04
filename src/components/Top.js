@@ -1,7 +1,8 @@
-//import React from 'react';
 import { useContext, React } from "react";
-import styled from 'styled-components';
 import UserContext from '../contexts/UserContext';
+
+import styled from 'styled-components';
+import bubble from "../assets/bubble.png";
 
 export default function Top(){
     const { user } = useContext(UserContext);
@@ -9,7 +10,8 @@ export default function Top(){
     return(
         <Head>
             <p>TrackIt</p>
-            <img src={user.image} alt='user-image' />
+            <img src={user.image} />
+            {user.name === "Doge" ? (<img className="easter-egg" src={bubble} /> ) : <img className="easter-egg none" src={bubble} /> }
         </Head>
     );
 }
@@ -35,4 +37,17 @@ const Head = styled.div`
         height: 51px;
         border-radius: 98.5px;
     }
+
+   .easter-egg{
+       width: 100px;
+       height: 50px;
+       border-radius: 0px;
+       position: fixed;
+       top: 10px;
+       right: 75px;
+   }
+
+   .none {
+       display: none;
+   }
 `;
